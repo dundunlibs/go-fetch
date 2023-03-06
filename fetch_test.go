@@ -1,7 +1,6 @@
 package gofetch
 
 import (
-	"bytes"
 	"net/http"
 	"testing"
 )
@@ -60,7 +59,10 @@ func TestPutJSON(t *testing.T) {
 		Header: http.Header{
 			"Content-Type": []string{"application/json"},
 		},
-		Body: bytes.NewBuffer([]byte("{\"id\":1,\"name\":\"Foo Bar\"}")),
+		Body: BodyJSON(H{
+			"id":   1,
+			"name": "Foo Bar",
+		}),
 	})
 	if err != nil {
 		t.Fatal(err)
