@@ -13,6 +13,7 @@ type Response struct {
 
 func (res *Response) BodyAsBytes() ([]byte, error) {
 	if res.body == nil {
+		defer res.Body.Close()
 		bytes, err := io.ReadAll(res.Body)
 		if err != nil {
 			return nil, err
